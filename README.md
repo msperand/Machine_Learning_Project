@@ -48,9 +48,12 @@ In order to optimize the hyper parameters, we tried different methods, like optu
 Even with this we realised that we were stagnating at that level of accuracy. Looking to improve that, we turned to data augmentation.
 
 ### Backtranslation
-Our first try was backtranslation. First with chat gpt directly, but it was not able to do the whole
+Our first try was backtranslation. It is the concept of translating text from one language to another and then translating it back to the original language to check for accuracy and consistency. It’s allows to add variations into the sentences, while ensuring the meaning remains intact, which is very useful for our task. We tried from French to English and then back to French. 
+We first tried with chat gpt directly, but it was not able to do the whole dataset because of its size. We then went with the api from google translate but got blocked by the number of requests and then the time it took. We thus decided to go another direction.
 
 ### Synonym replacement
+
+the concept is easy on paper, replace one word by a synonym. This becomes a little bit more tricky when the goal is to keep the same difficulty. For that reason we first asked chat gpt to do the task, resulting in the dataset "augmented_training_data_chat_synonym.csv". It is this one that 
 
 ### Paraphrasing
 
