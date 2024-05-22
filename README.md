@@ -1,6 +1,4 @@
-![plot](https://github.com/msperand/Machine_Learning_Project/blob/main/Other/picture_readme.png?raw=true)
-![alt text](blob:https://github.com/d403bd17-0e7f-44bc-b504-bdc59884c509)
-
+![robots voting](https://raw.githubusercontent.com/msperand/Machine_Learning_Project/main/Other/DALL·E%202024-05-21%2016.19.32%20-%20A%20fun%20illustration%20depicting%20different%20machine%20learning%20models%20as%20robots%2C%20each%20voting%20according%20to%20their%20accuracy.%20Imagine%20robots%20named%20DistillBERT%2C%20C.webp)
 
 # Machine_Learning_Project
 Predicting the difficulty of French text (Kaggle competition)
