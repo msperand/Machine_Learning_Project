@@ -37,8 +37,10 @@ We believe that BERT models are better at predicting how hard sentences are beca
 The next big amelioration was when we started using FlauBERT-large, indeed doing some more research and trying different things, we saw that there was BERT models already made for French that we could fine tune on our own data. We found two main ones, CamemBERT and FlauBERT. We focused mainly on FlauBERT for two reasons. Firstly, because we started with it and it allowed us to jump to more than 59% at the first use, and secondly, because we never managed to make anything out of the CamemBERT-large. We tried different types with different hyperparameters, but it never managed to learn ad kept predicting only one class.
 After some research we realised thatFlauBERT large works better than CamemBERT large for predicting sentence difficulty because it’s specifically designed for the French language, capturing its nuances and complexities more effectively. Trained on a diverse and extensive French corpus, FlauBERT excels at understanding the subtleties of French text. While CamemBERT is also powerful, FlauBERT’s tailored training gives it an edge in handling the specific linguistic features and challenges of French, leading to more accurate predictions of sentence difficulty.
 The 1024 embeddings and 374M parameters of FlauBERT-large, make it an amazing model to work with, as it is really able to grasp the complexity and nuances of the sentences.
+In order to optimize the hyper parameters, we tried different methods, like optuna and gridsearch. However, those require to run the training at least 5 to 10 times, which takes time even with the fastest machine of Google Colab, so we decided to do it by hand and change them ourselves. This allowed us to have a lot of different submissions, varying the number epochs, the decay, steps, batch size and even random seed and state. This turned out to be very useful as we'll see later.
 
 ## Data Augmentation
+
 
 ### Backtranslation
 
