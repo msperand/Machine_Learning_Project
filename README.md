@@ -53,13 +53,22 @@ We first tried with chat gpt directly, but it was not able to do the whole datas
 
 ### Synonym replacement
 
-the concept is easy on paper, replace one word by a synonym. This becomes a little bit more tricky when the goal is to keep the same difficulty. For that reason we first asked chat gpt to do the task, resulting in the dataset "augmented_training_data_chat_synonym.csv". It is this one that 
+the concept is easy on paper, replace one word by a synonym. This becomes a little bit more tricky when the goal is to keep the same difficulty. For that reason we first asked chat gpt to do the task, resulting in the dataset "augmented_training_data_chat_synonym.csv". 
+As a second try, we created a big library of synonym and a corpus of difficulty with the help of chat gpt in order to make the replacement by hand, creating the dataset "augmented_data" in the notebook "Project-FlauBERT".
 
 ### Paraphrasing
+The goal of this method is to paraphrase the sentence in order to keep it close to the original one, making it of the same difficulty but adding variety in the training_data. We did it with chat gpt resulting in the dataset "enhanced_paraphrased_data.csv".
+
+All these methods were in fact very useful to improve our model as it allowed to bring it up to 63.5% accurarcy. However, it is not really for the reason one may think. indeed, it was mostly because it increased the number of sentences allowin the model to learn more form them, as teh new datasets, consisted mostly of the same sentences repeated many times. This is due to the fact that our synonym replacement had only a limited number of words, thus letting most sentences unchanged. the same phenomenon happened with the paraphrasing, probably because chat gpt did a poor job not actually paraphrasing. 
+
+We realised this only late, when we had already used this extensively, while improving our accuracy, for this reason, we decided to keep it that way. We believe that what happened is that our models overfitted the training data but improved as the test data is very close to it, but we will discuss it more in the limitations part.
 
 ## Mastermind
 
 ## Other tries
+
+We did many other tries that ranged from not very .... to absolutely not working, we are going to list them here.
+
 
 ## Limitations
 
