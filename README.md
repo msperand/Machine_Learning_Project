@@ -1,5 +1,4 @@
-
-
+![alt text](https://github.com/msperand/Machine_Learning_Project/blob/main/Other/picture_readme.png?raw=true)
 
 # Machine_Learning_Project
 Predicting the difficulty of French text (Kaggle competition)
