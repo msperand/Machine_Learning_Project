@@ -79,5 +79,7 @@ We did many other tries that ranged from not very successful to absolutely not w
 
 Now that we have mentionned all the good things about this project, let us talk about the limitations of our models. First of all, even with a first place we are only at a 65.2% accuracy. This means that around 35% of the time we are wrong. Secondly, as we mentionned before, our BERT models tended to overfit badly, and it made them more accurate. Indeed, duplicating the sentences in the training set led to a better score. This is counterintuitive, and comes probably from the fact that the training and test data are very close to each other. However, it also suggests that if we tried our model on something slightly different, it could perform very badly.
 
+## The Streamlit
+
 
 
