@@ -35,6 +35,10 @@ h1, h2, h3, h4, h5, h6 {
 .css-1aehpvj .st-cb, .css-1aehpvj .st-cb div {
     color: white; /* Change checkbox color to white */
 }
+
+.stTextInput div, .stTextArea div {
+        color: white !important;
+    }
 </style>
 """
 
