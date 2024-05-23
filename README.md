@@ -9,6 +9,9 @@ This repository is the result the Machine Learning Project of Antoine Trabia and
 We will go through our main steps, detailing what we did, why and with what result. 
 Firstly, we proudly arrived first in the aforementioned competition, with a final accuracy of 65.2% that was the best result from our 130 submissions over the span of one month.
 
+## The Repository
+We organized the repository with one folder with the different notebooks linked to the methods we used, the data that we recieved and the one we created and then everything we need for our streamlit application. Finally, there is the video of presentation of our work.
+
 ## The start
 What we decided to do first was to get to know the training and test data. For the training data, we did some basic EDA that can be found on the notebook of classic tries, and for the test data, we did six submissions with only one category each time to know as best we could what the data looked like. What we found out was that both datasets were evenly distributed and that there was a small correlation between the length of the sentences and their difficulty.
 
@@ -69,10 +72,12 @@ We realised this only late, when we had already used this extensively, while imp
 
 ## Other tries
 
-We did many other tries that ranged from not very .... to absolutely not working, we are going to list them here.
+We did many other tries that ranged from not very successful to absolutely not working, we are going to list them here. We already mentionned the problems encountered with backtranslation and the optuna library. In addition to that, we tried different models that we simply were not able to make run, for example, we tried the model Mixtral from the HuggingFace website, but it seemed to block us. We also wanted to try the OpenAI APIs in order to fine tune a GPT but we kept getting denied access. Finally, we found a library of french synonyms called synonyme that we wanted to use for the synonym replacement, but it was not well developed and we could really use it.
 
 
 ## Limitations
+
+Now that we have mentionned all the good things about this project, let us talk about the limitations of our models. First of all, even with a first place we are only at a 65.2% accuracy. This means that around 35% of the time we are wrong. Secondly, as we mentionned before, our BERT models tended to overfit badly, and it made them more accurate. Indeed, duplicating the sentences in the training set led to a better score. This is counterintuitive, and comes probably from the fact that the training and test data are very close to each other. However, it also suggests that if we tried our model on something slightly different, it could perform very badly.
 
 
 
