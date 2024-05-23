@@ -98,3 +98,5 @@ A popular way to learn a language is by listening to music in that language. Man
 
 As mentioned earlier, our app uses a FlauBERT large model trained on augmented data. This model achieved an accuracy of 63.5% in predicting test data on Kaggle. The model is available on both GitHub and Huggingface (URL: [FlauBERT French Song Difficulty Model](https://huggingface.co/AntoineTrabia/FrenchSongDifficulty/tree/main)). 
 
+Here is the link for the app: (URL: [Lyrical Lingo]( https://lyricallingo.streamlit.app)). The python file 'LyricalLingo.py' for the app is also available on the GitHub in the 'Streamlit' directory and can be run locally. 
+
