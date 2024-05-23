@@ -70,6 +70,18 @@ We realised this only late, when we had already used this extensively, while imp
 
 ## Mastermind
 
+During the competition, we quickly realized that we needed a distinctive approach to stand out. The previously mentioned steps were natural progressions in the competition context, and it was likely that several groups would adopt similar strategies. This scenario would turn the competition into a race to find the best parameters, data augmentation techniques, and so on, making it challenging to maintain the lead due to some level of luck and constant pressure. Therefore, we needed a unique strategy, something other competitors wouldn't think of doing. We devised our special strategy when we were stagnating below the 60% mark, with other competitors close behind. At that point, we had made nearly 30-40 submissions, leading us to develop the "mastermind" strategy.
+
+Inspired by the game Mastermind, where players combine different colored pegs to form sequences and refine their guesses based on feedback, we applied a similar concept to our model predictions. The goal was to combine the predictions of various models to achieve a more accurate final prediction. We employed two main strategies:
+
+Firstly, the weighted strategy involves allowing each model to "vote" on the predicted difficulty level. These votes are weighted according to each model's accuracy, giving more influence to the more accurate models. The difficulty level with the highest weighted vote count is chosen as the final prediction.
+
+Secondly, the outliers strategy focuses on correcting a model's predictions using the consensus of other models. If all models predict the same difficulty level except for one, the outlier model's prediction is replaced with the consensus prediction. This approach relies on the premise that if most models agree on a prediction, the deviating model is likely incorrect.
+
+Throughout the competition, we experimented with several variants of the mastermind strategy and combinations of models. This often led to increases of 2-3% in our prediction accuracy compared to our best singular model. This improvement allowed us to comfortably surpass our competitors. Ultimately, our winning mastermind combination involved using the weighted strategy with our best four models and further correcting the resulting predictions with the next best three models. This approach increased our accuracy from 63.5% (our best individual model) to 65.2%, securing our victory in the competition.
+
+The mastermind strategy was devised for the competition only. For practical application, we implemented the 63.5% accuracy model in our app, as we believed a difference of two percent wouldn't significantly impact performance outside of the competition.
+
 ## Other tries
 
 We did many other tries that ranged from not very successful to absolutely not working, we are going to list them here. We already mentionned the problems encountered with backtranslation and the optuna library. In addition to that, we tried different models that we simply were not able to make run, for example, we tried the model Mixtral from the HuggingFace website, but it seemed to block us. We also wanted to try the OpenAI APIs in order to fine tune a GPT but we kept getting denied access. Finally, we found a library of french synonyms called synonyme that we wanted to use for the synonym replacement, but it was not well developed and we could really use it.
