@@ -70,10 +70,26 @@ def predict_difficulty(sentence, model, tokenizer):
     return predicted_level
 
 # Streamlit app
-st.title("French Song Difficulty Level Estimator")
+st.title("Lyrical Lingo")
+
+st.markdown(f"<h2 style='margin-top: 0px; margin-bottom: 0px; padding-top: 5px; color: grey'> French Song Difficulty Estimator </h2>", unsafe_allow_html=True)
+
+st.markdown("<div style='height: 35px;'></div>", unsafe_allow_html=True)  # Add big spacing
+
+
+st.write("""
+Enhance your French language skills through the power of music! Listening to French songs is one of the best ways to learn the language, but how do you choose the right songs to learn from?
+
+Don't worry, <b>Lyrical Lingo</b> has got you covered!
+
+Select from our curated list of songs, organized alphabetically and ranging from French classics to contemporary hits, or insert your own favorites. Then, discover their difficulty level, from A1 (beginner) to C2 (advanced), and start learning with songs adapted to your level!
+""", unsafe_allow_html=True)
+
+
+st.markdown("<div style='height: 25px;'></div>", unsafe_allow_html=True)  # Add big spacing
 
 # Load predefined songs
-predefined_songs = pd.read_csv('https://raw.githubusercontent.com/AntoineTrabia/ML-Project/main/songs.csv')
+predefined_songs = pd.read_csv('https://raw.githubusercontent.com/msperand/Machine_Learning_Project/main/Streamlit/songs.csv')
 
 # Combine song name and singer for the dropdown menu
 predefined_songs['Song_Display'] = predefined_songs['Song Name'] + " by " + predefined_songs['Singer']
