@@ -4,7 +4,7 @@
 Predicting the difficulty of French text (Kaggle competition)
 
 ## The Task
-This repository is the result the Machine Learning Project of Antoine Trabia and myself, Maxime Sperandio. We form team "Apple" in the Kaggle competition. The main goal of this project was to predict the difficulty of French sentences. We were given 4'800 French sentences and their linked difficulty in the CEFR format (A1, A2, B1, B2, C1, C2), in the csv: training_data.csv, we were also given unlabeled_test_data.csv which was a dataset of 1'200 French sentences of which we had to predict the difficulty. After having done that, we had to upload our predictions on Kaggle in the same format as sample_submission.csv. We will now discuss the different method we used in order to try to have the best accuracy.
+This repository is the result the Machine Learning Project of Antoine Trabia and Maxime Sperandio. We form team "Apple" in the Kaggle competition. The main goal of this project was to predict the difficulty of French sentences. We were given 4'800 French sentences and their linked difficulty in the CEFR format (A1, A2, B1, B2, C1, C2), in the csv: training_data.csv, we were also given unlabeled_test_data.csv which was a dataset of 1'200 French sentences of which we had to predict the difficulty. After having done that, we had to upload our predictions on Kaggle in the same format as sample_submission.csv. We will now discuss the different method we used in order to try to have the best accuracy.
 
 We will go through our main steps, detailing what we did, why and with what result. 
 Firstly, we proudly arrived first in the aforementioned competition, with a final accuracy of 65.2% that was the best result from our 130 submissions over the span of one month.
