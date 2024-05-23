@@ -34,39 +34,39 @@ With that in mind, we decided to try neural networks, however we did not manage 
 
 ## BERT
 
-Realizing that we turned ourselves towards the Bidirectional Encoder Representations from Transformers (BERT) models. We tried different ones, starting with DistilBERT, and then Bert-multilingual as the sentences were in French. This improved our accuracy up to 54.2% when using the bert-base-multilingual.
+Realizing that we turned ourselves towards the Bidirectional Encoder Representations from Transformers (BERT) models. We tried different ones, starting with `DistilBERT`, and then `Bert-multilingual` as the sentences were in French. This improved our accuracy up to 54.2% when using the `bert-base-multilingual`.
 
 We believe that BERT models are better at predicting how hard sentences are because they understand the context well. Unlike older methods that might just look at words individually or use simple rules, BERT reads the whole sentence and knows how words relate to each other. This deep understanding helps BERT catch all the nuances and complexities, making it much more accurate at judging sentence difficulty. Moreover, BERT's advanced architecture is great at picking up on long-range connections and intricate patterns in text, which older models often miss.
 
 ## FlauBERT Large
 
-The next big amelioration was when we started using FlauBERT-large, indeed doing some more research and trying different things, we saw that there were BERT models already made for French that we could fine-tune on our own data. We found two main ones, CamemBERT and FlauBERT. We focused mainly on FlauBERT for two reasons. Firstly, because we started with it and it allowed us to jump to more than 59% at the first use, and secondly, because we never managed to make anything out of the CamemBERT-large. We tried different types with different hyperparameters, but it never managed to learn ad kept predicting only one class.
+The next big improvement was when we started using `FlauBERT-large`, indeed doing some more research and trying different things, we saw that there were BERT models already made for French that we could fine-tune on our data. We found two main ones, `CamemBERT` and `FlauBERT`. We focused mainly on FlauBERT for two reasons. Firstly, because we started with it and it allowed us to jump to more than 59% at the first use, and secondly, because we never managed to make anything out of the `CamemBERT-large`. We tried different types with different hyperparameters, but it never managed to learn and kept predicting only one class.
 
-After some research we realised thatFlauBERT large works better than CamemBERT large for predicting sentence difficulty because it’s specifically designed for the French language, capturing its nuances and complexities more effectively. Trained on a diverse and extensive French corpus, FlauBERT excels at understanding the subtleties of French text. While CamemBERT is also powerful, FlauBERT’s tailored training gives it an edge in handling the specific linguistic features and challenges of French, leading to more accurate predictions of sentence difficulty.
+After some research we realized that `FlauBERT-large` works better than `CamemBERT-large` for predicting sentence difficulty because it’s specifically designed for the French language, capturing its nuances and complexities more effectively. Trained on a diverse and extensive French corpus, FlauBERT excels at understanding the subtleties of French text. While `CamemBERT` is also powerful, `FlauBERT`’s tailored training gives it an edge in handling the specific linguistic features and challenges of French, leading to more accurate predictions of sentence difficulty.
 
-The 1024 embeddings and 374M parameters of FlauBERT-large, make it an amazing model to work with, as it is really able to grasp the complexity and nuances of the sentences.
+The 1024 embeddings and 374M parameters of FlauBERT-large, make it an amazing model to work with, as it is able to grasp the complexity and nuances of the sentences.
 
-In order to optimize the hyper parameters, we tried different methods, like optuna and gridsearch. However, those require to run the training at least 5 to 10 times, which takes time even with the fastest machine of Google Colab, so we decided to do it by hand and change them ourselves. This allowed us to have a lot of different submissions, varying the number epochs, the decay, steps, batch size and even random seed and state.  This turned out to be very useful as we'll see later, and gave us a best accuracy of 59.5% on the Kaggle.
+To optimize the hyperparameters, we tried different methods, like optuna and grid-search. However, those require running the training at least 5 to 10 times, which takes time even with the fastest machine of Google Colab, so we decided to do it by hand and change them ourselves. This allowed us to have a lot of different submissions, varying the number of epochs, the decay, steps, batch size, and even random seed and state.  This turned out to be very useful as we'll see later, and gave us a best accuracy of 59.5% on the Kaggle.
 
 ## Data Augmentation
 
-Even with this we realised that we were stagnating at that level of accuracy. Looking to improve that, we turned to data augmentation.
+Even with this, we realised that we were stagnating at that level of accuracy. Looking to improve that, we turned to data augmentation.
 
-### Backtranslation
-Our first try was backtranslation. It is the concept of translating text from one language to another and then translating it back to the original language to check for accuracy and consistency. It’s allows to add variations into the sentences, while ensuring the meaning remains intact, which is very useful for our task. We tried from French to English and then back to French. 
-We first tried with chat gpt directly, but it was not able to do the whole dataset because of its size. We then went with the api from google translate but got blocked by the number of requests and then the time it took. We thus decided to go another direction.
+### Back translation
+Our first try was backtranslation. It is the concept of translating text from one language to another and then translating it back to the original language to check for accuracy and consistency. It allows us to add variations to the sentences while ensuring the meaning remains intact, which is very useful for our task. We tried from French to English and then back to French. 
+We first tried with chat gpt directly, but it was not able to do the whole dataset because of its size. We then went with the API from Google Translate but got blocked by the number of requests and then the time it took. We thus decided to go in another direction.
 
 ### Synonym replacement
 
-the concept is easy on paper, replace one word by a synonym. This becomes a little bit more tricky when the goal is to keep the same difficulty. For that reason we first asked chat gpt to do the task, resulting in the dataset "augmented_training_data_chat_synonym.csv". 
-As a second try, we created a big library of synonym and a corpus of difficulty with the help of chat gpt in order to make the replacement by hand, creating the dataset "augmented_data" in the notebook "Project-FlauBERT".
+the concept is easy on paper, replace one word with a synonym. This becomes a little bit more tricky when the goal is to keep the same difficulty. For that reason we first asked chat gpt to do the task, resulting in the dataset "augmented_training_data_chat_synonym.csv". 
+As a second try, we created a big library of synonyms and a corpus of difficulty with the help of chat gpt to make the replacement by hand, creating the dataset "augmented_data" in the notebook "Project-FlauBERT".
 
 ### Paraphrasing
-The goal of this method is to paraphrase the sentence in order to keep it close to the original one, making it of the same difficulty but adding variety in the training_data. We did it with chat gpt resulting in the dataset "enhanced_paraphrased_data.csv".
+The goal of this method is to paraphrase the sentence to keep it close to the original one, making it of the same difficulty but adding variety in the training_data. We did it with chat gpt resulting in the dataset "enhanced_paraphrased_data.csv".
 
-All these methods were in fact very useful to improve our model as it allowed to bring it up to 63.5% accurarcy. However, it is not really for the reason one may think. indeed, it was mostly because it increased the number of sentences allowin the model to learn more form them, as teh new datasets, consisted mostly of the same sentences repeated many times. This is due to the fact that our synonym replacement had only a limited number of words, thus letting most sentences unchanged. the same phenomenon happened with the paraphrasing, probably because chat gpt did a poor job not actually paraphrasing. 
+All these methods were very useful in improving our model as they allowed us to bring it up to 63.5% accuracy. However, it is not really for the reason one may think. indeed, it was mostly because it increased the number of sentences allowing the model to learn more from them, as the new datasets, consisted mostly of the same sentences repeated many times. This is because our synonym replacement had only a limited number of words, thus leaving most sentences unchanged. the same phenomenon happened with the paraphrasing, probably because Chat gpt did a poor job not actually paraphrasing. 
 
-We realised this only late, when we had already used this extensively, while improving our accuracy, for this reason, we decided to keep it that way. We believe that what happened is that our models overfitted the training data but improved as the test data is very close to it, but we will discuss it more in the limitations part.
+We realized this only late when we had already used this extensively, while improving our accuracy, for this reason, we decided to keep it that way. We believe that what happened is that our models overfitted the training data but improved as the test data is very close to it, but we will discuss it more in the limitations part.
 
 ## Mastermind
 
@@ -84,12 +84,12 @@ The mastermind strategy was devised for the competition only. For practical appl
 
 ## Other tries
 
-We did many other tries that ranged from not very successful to absolutely not working, we are going to list them here. We already mentionned the problems encountered with backtranslation and the optuna library. In addition to that, we tried different models that we simply were not able to make run, for example, we tried the model Mixtral from the HuggingFace website, but it seemed to block us. We also wanted to try the OpenAI APIs in order to fine tune a GPT but we kept getting denied access. Finally, we found a library of french synonyms called synonyme that we wanted to use for the synonym replacement, but it was not well developed and we could really use it.
+We did many other tries that ranged from not very successful to absolutely not working, we are going to list them here. We already mentioned the problems encountered with back translation and the optuna library. In addition to that, we tried different models that we simply were not able to make run, for example, we tried the model Mixtral from the HuggingFace website, but it seemed to block us. We also wanted to try the OpenAI APIs to fine-tune a GPT but we kept getting denied access. Finally, we found a library of French synonyms called synonyms that we wanted to use for the synonym replacement, but it was not well developed and we could not use it.
 
 
 ## Limitations
 
-Now that we have mentionned all the good things about this project, let us talk about the limitations of our models. First of all, even with a first place we are only at a 65.2% accuracy. This means that around 35% of the time we are wrong. Secondly, as we mentionned before, our BERT models tended to overfit badly, and it made them more accurate. Indeed, duplicating the sentences in the training set led to a better score. This is counterintuitive, and comes probably from the fact that the training and test data are very close to each other. However, it also suggests that if we tried our model on something slightly different, it could perform very badly.
+Now that we have mentioned all the good things about this project, let us talk about the limitations of our models. First of all, even with a first place we are only at a 65.2% accuracy. This means that around 35% of the time we are wrong. Secondly, as we mentioned before, our BERT models tended to overfit badly, and it made them more accurate. Indeed, duplicating the sentences in the training set led to a better score. This is counterintuitive and comes probably from the fact that the training and test data are very close to each other. However, it also suggests that if we tried our model on something slightly different, it could perform very badly.
 
 ## The Streamlit
 A popular way to learn a language is by listening to music in that language. Many people use this technique to learn French, but one common challenge is knowing which songs to choose. If the song is too simple, the benefits are minimal, but if the song is too complex, it can be overwhelming. To address this issue, we developed 'Lyrical Lingo' an app designed to help French learners select songs that match their proficiency level. Our app estimates the overall difficulty level of a French song (A1, A2, B1, B2, C1, C2) and assesses the difficulty of each sentence in the song. 
